@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 
+#include <sensor_msgs/JointState.h>
 #include <kdl/tree.hpp>
 #include <Eigen/Geometry>
 
@@ -65,8 +66,8 @@ public:
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint.
 	 */
 	Eigen::Isometry3d transform(
-		std::string const & source,
-		std::string const & target
+		std::string const & source, ///< The source frame.
+		std::string const & target  ///< The target frame.
 	) const {
 		return getTransform(getChain(source, target));
 	}
@@ -76,9 +77,9 @@ public:
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
 	 */
 	Eigen::Isometry3d transform(
-		std::string const & source,
-		std::string const & target,
-		std::map<std::string, double> const & joints
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
+		std::map<std::string, double> const & joints  ///< The map holding joint positions.
 	) const {
 		return getTransform(getChain(source, target), joints);
 	}
@@ -88,12 +89,24 @@ public:
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
 	 */
 	Eigen::Isometry3d transform(
-		std::string const & source,
-		std::string const & target,
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
 		std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
 		std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
 	) const {
 		return getTransform(getChain(source, target), joint_names, joint_positions);
+	}
+
+	/// Get a transform from one frame to another.
+	/**
+	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
+	 */
+	Eigen::Isometry3d transform(
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
+		sensor_msgs::JointState const & joints        ///< The joint positions.
+	) const {
+		return getTransform(getChain(source, target), joints.name, joints.position);
 	}
 
 

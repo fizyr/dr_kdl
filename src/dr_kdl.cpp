@@ -79,8 +79,8 @@ Eigen::Isometry3d getTransform(KDL::Chain const & chain, std::vector<std::string
 		// Look up non-fixed joints in map.
 		} else {
 			auto index = std::find(joint_names.begin(), joint_names.end(), segment.getJoint().getName());
-			if (index == joint_names.end()) throw std::runtime_error("Joint `" + segment.getName() + "' not found in joint map.");
-			transform = transform * segment.pose(joint_positions[std::distance(joint_names.begin(), index)]);
+			if (index == joint_names.end()) throw std::runtime_error("Joint `" + segment.getName() + "' not found in joint list.");
+			transform = transform * segment.pose(joint_positions[index - joint_names.begin()]);
 		}
 	}
 
