@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(dr_kdl)
 
 find_package(catkin REQUIRED COMPONENTS dr_util kdl_parser sensor_msgs)
+find_package(orocos_kdl REQUIRED)
 find_package(Eigen REQUIRED)
 
 catkin_package(
@@ -21,7 +22,7 @@ add_library(${PROJECT_NAME}
 	src/dr_kdl.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${Eigen_LIBRARIES} ${orocos_kdl_LIBRARIES})
 
 install(TARGETS ${PROJECT_NAME}
 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
