@@ -98,19 +98,27 @@ KDL::Chain KdlTree::getChain(std::string const & start, std::string const & end)
 
 KdlTree KdlTree::fromParameter(std::string const & parameter) {
 	KDL::Tree kdl;
-	kdl_parser::treeFromParam(parameter, kdl);
+
+	if(!kdl_parser::treeFromParam(parameter, kdl)){
+		throw std::runtime_error("Failed to load kdl tree from the parameter.");
+	}
+
 	return kdl;
 }
 
 KdlTree KdlTree::fromString(std::string const & urdf) {
 	KDL::Tree kdl;
-	kdl_parser::treeFromString(urdf, kdl);
+	if(!kdl_parser::treeFromString(urdf, kdl)){
+		throw std::runtime_error("Failed to load kdl tree from the urdf.");
+	}
 	return kdl;
 }
 
 KdlTree KdlTree::fromFile(std::string const & filename) {
 	KDL::Tree kdl;
-	kdl_parser::treeFromFile(filename, kdl);
+	if(!kdl_parser::treeFromFile(filename, kdl)){
+		throw std::runtime_error("Failed to load kdl tree from the file.");
+	}
 	return kdl;
 }
 
