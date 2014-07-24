@@ -87,32 +87,6 @@ Eigen::Isometry3d getTransform(KDL::Chain const & chain, std::vector<std::string
 	return toEigen(transform);
 }
 
-Eigen::Isometry3d getTransform(KDL::Chain const & chain, urpp::joint_position const & joint_positions, const std::string & joint_name_prefix) {
-	
-	std::vector<std::string> joint_names = {joint_name_prefix+"shoulder_pan_joint",
-											joint_name_prefix+"shoulder_lift_joint",
-											joint_name_prefix+"elbow_joint",
-											joint_name_prefix+"wrist_1_joint",
-											joint_name_prefix+"wrist_2_joint",
-											joint_name_prefix+"wrist_3_joint"};
-
-	KDL::Frame transform = KDL::Frame::Identity();
-
-	for (auto const & segment : chain.segments) {
-		// Fixed joints.
-		if (segment.getJoint().getType() == KDL::Joint::JointType::None) {
-			transform = transform * segment.pose(0);
-		
-		// Look up non-fixed joints in map.
-		} else {
-			auto index = std::find(joint_names.begin(), joint_names.end(), segment.getJoint().getName());
-			if (index == joint_names.end()) throw std::runtime_error("Joint `" + segment.getName() + "' not found in joint list.");
-			transform = transform * segment.pose(joint_positions[index - joint_names.begin()]);
-		}
-	}
-	return toEigen(transform);
-}
-
 KDL::Chain KdlTree::getChain(std::string const & start, std::string const & end) const {
 	KDL::Chain chain;
 	if (KDL::Tree::getChain(start, end, chain)) {

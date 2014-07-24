@@ -2,10 +2,9 @@
 #include <map>
 #include <string>
 
-#include <sensor_msgs/JointState.h>
-#include <kdl/tree.hpp>
 #include <Eigen/Geometry>
-#include "urpp/kinematics.hpp"
+#include <kdl/tree.hpp>
+#include <sensor_msgs/JointState.h>
 
 namespace dr {
 
@@ -42,12 +41,6 @@ Eigen::Isometry3d getTransform(
 	KDL::Chain const & chain,                     ///< The chain.
 	std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
 	std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
-);
-
-Eigen::Isometry3d getTransform(
-	KDL::Chain const & chain, 					  ///< The chain
-	urpp::joint_position const & joint_positions, ///< The joint positions
-	const std::string & joint_name_prefix = "ur_" ///< Prefix for ur arm joint names.
 );
 
 
@@ -115,16 +108,6 @@ public:
 	) const {
 		return getTransform(getChain(source, target), joints.name, joints.position);
 	}
-
-	Eigen::Isometry3d transform(
-		std::string const & source,                   ///< The source frame.
-		std::string const & target,                   ///< The target frame.
-		urpp::joint_position const & joint_positions, ///< The joint positions.
-		std::string const & joint_name_prefix = "ur_" ///< joint name prefix for ur arm.
-	) const {
-		return getTransform(getChain(source, target), joint_positions, joint_name_prefix);
-	}
-
 
 };
 
