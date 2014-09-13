@@ -4,6 +4,7 @@ project(dr_kdl)
 find_package(catkin REQUIRED COMPONENTS
 	sensor_msgs
 	kdl_parser
+	dr_cmake
 	dr_util
 	dr_eigen
 )
@@ -16,9 +17,7 @@ catkin_package(
 	CATKIN_DEPENDS dr_eigen
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra")
-
-include_directories(
+dr_include_directories(
 	include/${PROJECT_NAME}
 	${catkin_INCLUDE_DIRS}
 	${Eigen_INCLUDE_DIRS}
