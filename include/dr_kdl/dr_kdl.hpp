@@ -9,35 +9,35 @@
 namespace dr {
 
 
-/// Get a the transform from the base to the end of a chain.
+/// Get a the pose of the end frame relative to the start frame of a chain.
 /**
  * Throws if a non-fixed joint is encountered in the chain.
  * \return The transform from the base of the chain to the end.
  */
-Eigen::Isometry3d getTransform(
+Eigen::Isometry3d getPose(
 	KDL::Chain const & chain ///< The chain.
 );
 
 
-/// Get a the transform from the base to the end of a chain.
+/// Get a the pose of the end frame relative to the start frame of a chain.
 /**
  * Non-fixed joints are looked up in a map.
  * Throws if a joint is not found.
  * \return The transform from the base of the chain to the end.
  */
-Eigen::Isometry3d getTransform(
+Eigen::Isometry3d getPose(
 	KDL::Chain const & chain,                    ///< The chain.
 	std::map<std::string, double> const & joints ///< The map of joint positions to use for non fixed joints in the chain.
 );
 
 
-/// Get a the transform from the base to the end of a chain.
+/// Get a the pose of the end frame relative to the start frame of a chain.
 /**
  * Non-fixed joints are looked up in a pair of vectors.
  * Throws if a joint is not found.
  * \return The transform from the base of the chain to the end.
  */
-Eigen::Isometry3d getTransform(
+Eigen::Isometry3d getPose(
 	KDL::Chain const & chain,                     ///< The chain.
 	std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
 	std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
@@ -69,7 +69,7 @@ public:
 		std::string const & source, ///< The source frame.
 		std::string const & target  ///< The target frame.
 	) const {
-		return getTransform(getChain(source, target));
+		return getPose(getChain(target, source));
 	}
 
 	/// Get a transform from one frame to another.
@@ -81,7 +81,7 @@ public:
 		std::string const & target,                   ///< The target frame.
 		std::map<std::string, double> const & joints  ///< The map holding joint positions.
 	) const {
-		return getTransform(getChain(source, target), joints);
+		return getPose(getChain(target, source), joints);
 	}
 
 	/// Get a transform from one frame to another.
@@ -94,7 +94,7 @@ public:
 		std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
 		std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
 	) const {
-		return getTransform(getChain(source, target), joint_names, joint_positions);
+		return getPose(getChain(target, source), joint_names, joint_positions);
 	}
 
 	/// Get a transform from one frame to another.
@@ -106,7 +106,7 @@ public:
 		std::string const & target,                   ///< The target frame.
 		sensor_msgs::JointState const & joints        ///< The joint positions.
 	) const {
-		return getTransform(getChain(source, target), joints.name, joints.position);
+		return getPose(getChain(target, source), joints.name, joints.position);
 	}
 
 };

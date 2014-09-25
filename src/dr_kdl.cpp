@@ -34,8 +34,8 @@ namespace {
 	}
 }
 
-/// Get a the transform from the base to the tip of a chain.
-Eigen::Isometry3d getTransform(KDL::Chain const & chain) {
+/// Get a the pose of the end frame relative to the start frame of a chain.
+Eigen::Isometry3d getPose(KDL::Chain const & chain) {
 	KDL::Frame transform = KDL::Frame::Identity();
 	for (auto const & segment : chain.segments) {
 		// Make sure we're only dealing with fixed joints.
@@ -47,8 +47,8 @@ Eigen::Isometry3d getTransform(KDL::Chain const & chain) {
 	return toEigen(transform);
 }
 
-/// Get a the transform from the base to the tip of a chain.
-Eigen::Isometry3d getTransform(KDL::Chain const & chain, std::map<std::string, double> const & joints) {
+/// Get a the pose of the end frame relative to the start frame of a chain.
+Eigen::Isometry3d getPose(KDL::Chain const & chain, std::map<std::string, double> const & joints) {
 	KDL::Frame transform = KDL::Frame::Identity();
 
 	for (auto const & segment : chain.segments) {
@@ -67,8 +67,8 @@ Eigen::Isometry3d getTransform(KDL::Chain const & chain, std::map<std::string, d
 	return toEigen(transform);
 }
 
-/// Get a the transform from the base to the tip of a chain.
-Eigen::Isometry3d getTransform(KDL::Chain const & chain, std::vector<std::string> const & joint_names, std::vector<double> const & joint_positions) {
+/// Get a the pose of the end frame relative to the start frame of a chain.
+Eigen::Isometry3d getPose(KDL::Chain const & chain, std::vector<std::string> const & joint_names, std::vector<double> const & joint_positions) {
 	KDL::Frame transform = KDL::Frame::Identity();
 
 	for (auto const & segment : chain.segments) {
