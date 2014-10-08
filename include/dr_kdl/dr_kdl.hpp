@@ -61,7 +61,55 @@ public:
 		std::string const & end    /// The end segment.
 	) const;
 
-	/// Get a transform from one frame to another.
+	/// Get a pose of one frame relative to another.
+	/**
+	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint.
+	 */
+	Eigen::Isometry3d pose(
+		std::string const & source, ///< The source frame.
+		std::string const & target  ///< The target frame.
+	) const {
+		return getPose(getChain(source, target));
+	}
+
+	/// Get a pose of one frame relative to another.
+	/**
+	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
+	 */
+	Eigen::Isometry3d pose(
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
+		std::map<std::string, double> const & joints  ///< The map holding joint positions.
+	) const {
+		return getPose(getChain(source, target), joints);
+	}
+
+	/// Get a pose of one frame relative to another.
+	/**
+	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
+	 */
+	Eigen::Isometry3d pose(
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
+		std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
+		std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
+	) const {
+		return getPose(getChain(source, target), joint_names, joint_positions);
+	}
+
+	/// Get a pose of one frame relative to another.
+	/**
+	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
+	 */
+	Eigen::Isometry3d pose(
+		std::string const & source,                   ///< The source frame.
+		std::string const & target,                   ///< The target frame.
+		sensor_msgs::JointState const & joints        ///< The joint positions.
+	) const {
+		return getPose(getChain(source, target), joints.name, joints.position);
+	}
+
+	/// Get a transformation that transforms coordinates from one frame to another.
 	/**
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint.
 	 */
@@ -69,10 +117,10 @@ public:
 		std::string const & source, ///< The source frame.
 		std::string const & target  ///< The target frame.
 	) const {
-		return getPose(getChain(target, source));
+		return pose(target, source);
 	}
 
-	/// Get a transform from one frame to another.
+	/// Get a transformation that transforms coordinates from one frame to another.
 	/**
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
 	 */
@@ -81,10 +129,10 @@ public:
 		std::string const & target,                   ///< The target frame.
 		std::map<std::string, double> const & joints  ///< The map holding joint positions.
 	) const {
-		return getPose(getChain(target, source), joints);
+		return pose(target, source, joints);
 	}
 
-	/// Get a transform from one frame to another.
+	/// Get a transformation that transforms coordinates from one frame to another.
 	/**
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
 	 */
@@ -94,10 +142,10 @@ public:
 		std::vector<std::string> const & joint_names, ///< The names of the joints in same order as the joint position vector.
 		std::vector<double> const & joint_positions   ///< The positions of the joints in the same order as the joint name vector.
 	) const {
-		return getPose(getChain(target, source), joint_names, joint_positions);
+		return pose(target, source, joint_names, joint_positions);
 	}
 
-	/// Get a transform from one frame to another.
+	/// Get a transformation that transforms coordinates from one frame to another.
 	/**
 	 * Throws if there is no chain between the frames or the chain contains a non-fixed joint for which no joint position is given.
 	 */
@@ -106,7 +154,7 @@ public:
 		std::string const & target,                   ///< The target frame.
 		sensor_msgs::JointState const & joints        ///< The joint positions.
 	) const {
-		return getPose(getChain(target, source), joints.name, joints.position);
+		return pose(target, source, joints);
 	}
 
 };
