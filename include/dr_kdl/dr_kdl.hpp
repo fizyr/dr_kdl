@@ -18,7 +18,6 @@ Eigen::Isometry3d getPose(
 	KDL::Chain const & chain ///< The chain.
 );
 
-
 /// Get a the pose of the end frame relative to the start frame of a chain.
 /**
  * Non-fixed joints are looked up in a map.
