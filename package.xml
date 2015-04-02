@@ -12,7 +12,7 @@
 	<author email="hansg91@gmail.com">Hans Gaiser</author>
 
 	<buildtool_depend>catkin</buildtool_depend>
-	<build_depend>dr_cmake></build_depend>
+	<build_depend>dr_cmake</build_depend>
 	<build_depend>dr_util</build_depend>
 	<build_depend>kdl_parser</build_depend>
 	<build_depend>dr_eigen</build_depend>
