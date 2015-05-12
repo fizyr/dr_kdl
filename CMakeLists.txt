@@ -4,7 +4,7 @@ project(dr_kdl)
 find_package(catkin REQUIRED COMPONENTS
 	sensor_msgs
 	kdl_parser
-	dr_cmake
+	dr_base
 	dr_util
 	dr_eigen
 )

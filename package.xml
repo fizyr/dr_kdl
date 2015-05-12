@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
 	<name>dr_kdl</name>
 	<version>1.0.0</version>
 	<description>Delft Robotics KDL functions.</description>
@@ -12,12 +12,10 @@
 	<author email="hansg91@gmail.com">Hans Gaiser</author>
 
 	<buildtool_depend>catkin</buildtool_depend>
-	<build_depend>dr_cmake</build_depend>
-	<build_depend>dr_util</build_depend>
-	<build_depend>kdl_parser</build_depend>
-	<build_depend>dr_eigen</build_depend>
-	<run_depend>kdl_parser</run_depend>
-	<run_depend>dr_eigen</run_depend>
+	<depend>dr_base</depend>
+	<depend>dr_util</depend>
+	<depend>dr_eigen</depend>
+	<depend>kdl_parser</depend>
 
 	<export>
 	</export>
