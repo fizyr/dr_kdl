@@ -9,7 +9,6 @@
 	<license>GPLv3</license>
 
 	<author email="maarten@de-vri.es">Maarten de Vries</author>
-	<author email="hansg91@gmail.com">Hans Gaiser</author>
 
 	<buildtool_depend>catkin</buildtool_depend>
 	<depend>dr_base</depend>
