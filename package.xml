@@ -3,11 +3,9 @@
 	<name>dr_kdl</name>
 	<version>1.0.0</version>
 	<description>Delft Robotics KDL functions.</description>
+	<license>all-rights-reserved</license>
 
 	<maintainer email="maarten@de-vri.es">Maarten de Vries</maintainer>
-
-	<license>GPLv3</license>
-
 	<author email="maarten@de-vri.es">Maarten de Vries</author>
 
 	<buildtool_depend>catkin</buildtool_depend>
@@ -15,7 +13,4 @@
 	<depend>dr_util</depend>
 	<depend>dr_eigen</depend>
 	<depend>kdl_parser</depend>
-
-	<export>
-	</export>
 </package>
