@@ -29,8 +29,10 @@ add_library(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Eigen_LIBRARIES} ${orocos_kdl_LIBRARIES})
 
-dr_add_gtest(kdl test/kdl.cpp)
-target_link_libraries(${PROJECT_NAME}_test_kdl ${PROJECT_NAME} ${catkin_LIBRARIES})
+dr_add_gtest(kdl   test/kdl.cpp)
+dr_add_gtest(eigen test/eigen.cpp)
+target_link_libraries(${PROJECT_NAME}_test_kdl   ${PROJECT_NAME} ${catkin_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_test_eigen ${PROJECT_NAME} ${catkin_LIBRARIES})
 
 install(
 	TARGETS "${PROJECT_NAME}"

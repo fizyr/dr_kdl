@@ -4,35 +4,9 @@
 #include <kdl_parser/kdl_parser.hpp>
 
 #include "dr_kdl.hpp"
+#include "eigen.hpp"
 
 namespace dr {
-
-namespace {
-	/// Create an Eigen transform from a KDL Frame.
-	Eigen::Isometry3d toEigen(KDL::Frame const & frame) {
-		Eigen::Isometry3d result;
-
-		// Rotation.
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 3; ++j) {
-				result(i, j) = frame.M(i, j);
-			}
-		}
-
-		// Translation.
-		for (int i = 0; i < 3; ++i) {
-			result(i, 3) = frame.p(i);
-		}
-
-		// Homogenous bit.
-		result(3, 0) = 0;
-		result(3, 1) = 0;
-		result(3, 2) = 0;
-		result(3, 3) = 1;
-
-		return result;
-	}
-}
 
 /// Get a the pose of the end frame relative to the start frame of a chain.
 Eigen::Isometry3d getPose(KDL::Chain const & chain) {
