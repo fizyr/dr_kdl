@@ -10,7 +10,6 @@
 
 	<buildtool_depend>catkin</buildtool_depend>
 	<depend>dr_base</depend>
-	<depend>dr_util</depend>
 	<depend>dr_eigen</depend>
 	<depend>kdl_parser</depend>
 </package>

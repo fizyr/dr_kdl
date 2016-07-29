@@ -5,7 +5,6 @@ find_package(catkin REQUIRED COMPONENTS
 	sensor_msgs
 	kdl_parser
 	dr_base
-	dr_util
 	dr_eigen
 )
 
