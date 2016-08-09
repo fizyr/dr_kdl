@@ -1,6 +1,5 @@
 #include "eigen.hpp"
 
-#include <dr_util/geometry.hpp>
 #include <dr_eigen/eigen.hpp>
 
 #include <gtest/gtest.h>

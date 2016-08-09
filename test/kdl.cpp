@@ -1,10 +1,10 @@
 #include "dr_kdl.hpp"
 
 #include <dr_eigen/eigen.hpp>
-#include <dr_util/geometry.hpp>
 
 #include <gtest/gtest.h>
 
+#include <cmath>
 
 int main(int argc, char * * argv) {
 	testing::InitGoogleTest(&argc, argv);
@@ -12,6 +12,10 @@ int main(int argc, char * * argv) {
 }
 
 namespace dr {
+
+namespace {
+	constexpr double pi() { return M_PI; }
+}
 
 TEST(KdlTree, pose) {
 	KdlTree kdl;
