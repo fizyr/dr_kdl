@@ -9,7 +9,8 @@
 	<author email="maarten@de-vri.es">Maarten de Vries</author>
 
 	<buildtool_depend>catkin</buildtool_depend>
-	<depend>dr_base</depend>
-	<depend>dr_eigen</depend>
+	<depend>eigen</depend>
 	<depend>kdl_parser</depend>
+	<depend>orocos_kdl</depend>
+	<depend>sensor_msgs</depend>
 </package>
