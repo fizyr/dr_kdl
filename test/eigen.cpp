@@ -14,7 +14,7 @@ int main(int argc, char * * argv) {
 namespace dr {
 
 std::string toString(Eigen::Vector3d const & q) {
-	return "[" + std::to_string(q.w())  + ", " + std::to_string(q.x()) + ", " + std::to_string(q.y()) + ", " + std::to_string(q.z()) + "]";
+	return "[" + std::to_string(q.x()) + ", " + std::to_string(q.y()) + ", " + std::to_string(q.z()) + "]";
 }
 
 std::string toString(Eigen::Quaterniond const & q) {
