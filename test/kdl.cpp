@@ -13,30 +13,26 @@ int main(int argc, char * * argv) {
 
 namespace dr {
 
-namespace {
-	constexpr double pi() { return M_PI; }
-}
-
 TEST(KdlTree, pose) {
 	KdlTree kdl;
 	kdl.addSegment(KDL::Segment("arm", KDL::Joint("joint", KDL::Joint::RotZ), KDL::Frame(KDL::Rotation::Identity(), KDL::Vector(1, 0, 0))), "root");
 
-	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 0.0 * pi()}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * pi())));
-	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 0.5 * pi()}}).isApprox(translate(0, 1, 0)  * rotateZ(0.5 * pi())));
-	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 1.0 * pi()}}).isApprox(translate(-1, 0, 0) * rotateZ(1.0 * pi())));
-	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 1.5 * pi()}}).isApprox(translate(0, -1, 0) * rotateZ(1.5 * pi())));
-	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 2.0 * pi()}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * pi())));
+	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 0.0 * M_PI}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * M_PI)));
+	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 0.5 * M_PI}}).isApprox(translate(0, 1, 0)  * rotateZ(0.5 * M_PI)));
+	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 1.0 * M_PI}}).isApprox(translate(-1, 0, 0) * rotateZ(1.0 * M_PI)));
+	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 1.5 * M_PI}}).isApprox(translate(0, -1, 0) * rotateZ(1.5 * M_PI)));
+	ASSERT_TRUE(kdl.pose("root", "arm", {{"joint", 2.0 * M_PI}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * M_PI)));
 }
 
 TEST(KdlTree, transform) {
 	KdlTree kdl;
 	kdl.addSegment(KDL::Segment("arm", KDL::Joint("joint", KDL::Joint::RotZ), KDL::Frame(KDL::Rotation::Identity(), KDL::Vector(1, 0, 0))), "root");
 
-	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 0.0 * pi()}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * pi())));
-	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 0.5 * pi()}}).isApprox(translate(0, 1, 0)  * rotateZ(0.5 * pi())));
-	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 1.0 * pi()}}).isApprox(translate(-1, 0, 0) * rotateZ(1.0 * pi())));
-	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 1.5 * pi()}}).isApprox(translate(0, -1, 0) * rotateZ(1.5 * pi())));
-	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 2.0 * pi()}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * pi())));
+	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 0.0 * M_PI}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * M_PI)));
+	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 0.5 * M_PI}}).isApprox(translate(0, 1, 0)  * rotateZ(0.5 * M_PI)));
+	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 1.0 * M_PI}}).isApprox(translate(-1, 0, 0) * rotateZ(1.0 * M_PI)));
+	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 1.5 * M_PI}}).isApprox(translate(0, -1, 0) * rotateZ(1.5 * M_PI)));
+	ASSERT_TRUE(kdl.transform("arm", "root", {{"joint", 2.0 * M_PI}}).isApprox(translate(1, 0, 0)  * rotateZ(0.0 * M_PI)));
 }
 
 }
