@@ -9,6 +9,7 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 find_package(catkin REQUIRED COMPONENTS
 	sensor_msgs
 	kdl_parser
+	dr_eigen
 )
 
 find_package(orocos_kdl REQUIRED)
